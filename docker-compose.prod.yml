@@ -1,0 +1,42 @@
+version: "3.8"
+services: 
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: my_rails_app_production
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+    ports:
+      - "5432:5432"
+
+  rails-api:
+    build:
+      context: ./rails-api
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/my_rails_app_production
+    ports:
+      - "4000:3000"
+    depends_on:
+      - db
+    command: >
+      bash -c "rm -f tmp/pids/server.pid &&
+            bundle exec rails db:create db:migrate &&
+            bundle exec rails s -b '0.0.0.0' -e production"
+  
+  nextjs:
+    build:
+      context: ./nextjs
+      target: runner
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rails-api
+
+volumes:
+  postgres_data:

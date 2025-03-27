@@ -1,0 +1,74 @@
+# -------------------------------
+# OS-specific files
+# -------------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# -------------------------------
+# Editor / IDE files
+# -------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# -------------------------------
+# Local environment files (sensitive)
+# -------------------------------
+.env
+.env*.local
+
+# -------------------------------
+# Tools folder
+# -------------------------------
+tools/
+
+# -------------------------------
+# Docker & Compose artifacts
+# -------------------------------
+# (Usually, you want to commit Dockerfiles and docker-compose files)
+*.log
+
+# -------------------------------
+# Kubernetes manifests and environment files
+# -------------------------------
+# Ignore any .env files in the k8s folder and its subdirectories
+k8s/*.env
+k8s/**/*.env
+# Keep example files if needed
+!k8s/dot.env-example
+
+# -------------------------------
+# Next.js / Node.js project (nextjs folder)
+# -------------------------------
+nextjs/node_modules/
+nextjs/.next/
+nextjs/out/
+nextjs/dist/
+# Ignore any env files in the Next.js project
+nextjs/*.env
+nextjs/**/*.env
+
+# -------------------------------
+# Ruby on Rails API project (rails-api folder)
+# -------------------------------
+rails-api/log/
+rails-api/tmp/
+rails-api/tmp/**/*
+rails-api/.bundle/
+# Ignore environment files for Rails API
+rails-api/*.env
+rails-api/**/*.env
+# If using SQLite, ignore database files
+rails-api/db/*.sqlite3
+rails-api/db/*.sqlite3-journal
+
+# -------------------------------
+# Additional files/folders to ignore (optional)
+# -------------------------------
+# Uncomment if you use Ruby version managers
+# .ruby-version
+

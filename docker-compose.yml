@@ -1,0 +1,59 @@
+version: "3.8"
+services: 
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: my_rails_app_development
+    ports:
+      - "5432:5432"
+
+  rails-api:
+    build:
+      context: ./rails-api
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgres://postgres:password@db:5432/my_rails_app_development
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+    ports:
+      - "4000:3000"
+    user: "1000:1000"
+    volumes:
+      - ./rails-api:/var/www/rails-api:cached
+    depends_on:
+      - db
+    command: >
+      bash -c "rm -f tmp/pids/server.pid &&
+                bundle exec rails db:create db:migrate &&
+                bundle exec rails s -b '0.0.0.0' -e development"
+
+  nextjs:
+    build:
+      context: ./nextjs
+      target: dev
+    command: yarn dev
+    environment:
+      NODE_ENV: development
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      NEXT_PUBLIC_DOMAIN: ${NEXT_PUBLIC_DOMAIN}
+      NEXT_PUBLIC_API_LLM_TOKEN: ${NEXT_PUBLIC_API_LLM_TOKEN}
+      NEXT_PUBLIC_RAILS_BACKEND: ${NEXT_PUBLIC_RAILS_BACKEND}
+      NEXT_PUBLIC_RAILS_BACKEND_PROBE: ${NEXT_PUBLIC_RAILS_BACKEND_PROBE}
+    volumes:
+      - ./nextjs:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rails-api
+
+volumes:
+  postgres_data:

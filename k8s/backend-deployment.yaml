@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rails-rayces
+  namespace: raycesv3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rails-api
+  template:
+    metadata:
+      labels:
+        app: rails-api
+    spec:
+      containers:
+      - name: rails-api
+        image: canriquez/rayces-backend:v0.15
+        # If your app listens on port 4000, expose it here:
+        ports:
+        - containerPort: 4000
+
+        # 1) Reference config values:
+        # Option A: Pull in ALL keys from your ConfigMap as env vars
+        envFrom:
+        - configMapRef:
+            name: raycesv3-config
+
+        # 2) Startup command (similar to your Docker Compose):
+        command: [ "bash", "-c" ]
+        args:
+          - |
+            # Remove any leftover PID file (common in Rails),
+            # run migrations, then start Rails on 0.0.0.0:4000.
+            rm -f tmp/pids/server.pid && \
+            bundle exec rails db:create db:migrate && \
+            bundle exec rails s -b '0.0.0.0' -p 4000 -e ${RAILS_ENV:-development}
+
+        # (Optional) Define readiness / liveness probes if you want:
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health_check
+        #     port: 4000
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health_check
+        #     port: 4000
+
