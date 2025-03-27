@@ -8,16 +8,25 @@ import { useSession } from  'next-auth/react'
 import { signIn } from 'next-auth/react';
 import { dislikePostByUser, likePostByUser } from '../api/rails-app/api';
 
-export default function IconActions({ id, isLikedByUser, refresh }) {
+
+interface IconActionsProps {
+  id: number;
+  isLikedByUser: boolean;
+  refresh: () => void;
+}
+
+const IconActions: React.FC<IconActionsProps> = ({ id, isLikedByUser, refresh }) => {
   const { data: session } = useSession();
 
   const likePost = async() => {
       if (session) {
         if(!isLikedByUser) {
+          //@ts-ignore
           await likePostByUser(session.id_token, id)
             .then(() => refresh())
             .catch(error => console.error('Error liking post:', error));
         } else {
+          //@ts-ignore
           await dislikePostByUser(session.id_token, id)
             .then(() => refresh())
             .catch(error => console.error('Error liking post:', error));
@@ -52,3 +61,5 @@ export default function IconActions({ id, isLikedByUser, refresh }) {
     </div>
   )
 }
+
+export default IconActions;

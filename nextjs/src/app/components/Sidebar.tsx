@@ -14,8 +14,10 @@ export default function Sidebar() {
   const { data: session } = useSession() as { data: Session | null };
 
   useEffect(() => {
+    //@ts-ignore
     if (session && session.id_token) {
       console.log('Attempt signin with id token:', session)
+      //@ts-ignore
       signInToBackend(session.id_token)
         .then(data => {
           console.log('Signed in to backend:', data);

@@ -14,7 +14,9 @@ export default function Page() {
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
+    //@ts-ignore
     if (session?.id_token) {
+      //@ts-ignore
       fetchAllPosts(session.id_token)
         .then((data) => setPosts(data))
         .catch((error) => console.error("Error fetching all posts:", error));
