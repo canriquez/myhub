@@ -20,6 +20,8 @@ FROM base AS dev
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Add node_modules/.bin to PATH so that commands like "next" are found
+ENV PATH="/app/node_modules/.bin:${PATH}"
 CMD ["yarn", "dev"]
 
 # Builder

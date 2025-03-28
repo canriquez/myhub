@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rayces-frontend
+  namespace: raycesv3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rayces-frontend
+  template:
+    metadata:
+      labels:
+        app: rayces-frontend
+    spec:
+      containers:
+      - name: nextjs
+        image: canriquez/rayces-ui:v0.12d
+        command: ["yarn", "dev"]
+        env:
+          - name: NODE_ENV
+            value: "development"
+          - name: PORT
+            value: "8080"
+        ports:
+        - containerPort: 8080
+        # 1) Reference config values:
+        # Option A: Pull in ALL keys from your ConfigMap as env vars
+        envFrom:
+        - configMapRef:
+            name: raycesv3-config
