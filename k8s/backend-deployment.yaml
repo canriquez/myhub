@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: rails-api
-        image: canriquez/rayces-backend:v0.15
+        image: canriquez/rayces-backend:v0.16
         # If your app listens on port 4000, expose it here:
         ports:
         - containerPort: 4000
@@ -27,7 +27,7 @@ spec:
             name: raycesv3-config
 
         # 2) Startup command (similar to your Docker Compose):
-        command: [ "bash", "-c" ]
+        command: [ "sh", "-c" ]
         args:
           - |
             # Remove any leftover PID file (common in Rails),

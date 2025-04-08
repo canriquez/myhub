@@ -33,7 +33,7 @@ export default function Sidebar() {
       <div className='flex flex-col gap-4 p-3'>
         <div className='flex items-center justify-start'>
           <Link href='/' className='flex items-center p-3 hover:bg-gray-100 rounded-full transition-all duration-200 gap-2 w-fit'>
-            <Image src="/assets/fulcrum_icon.png" width={30} height={30} alt="Loading" />
+            <Image src="/assets/MyHub_icon.png" width={30} height={30} alt="Loading" />
             <span className='font-bold hidden xl:inline'>Home</span>
           </Link>
         </div>

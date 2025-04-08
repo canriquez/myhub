@@ -30,7 +30,7 @@ export default function Page() {
       <div className="flex items-center py-2 px-3 sticky top-0 z-50 bg-white border-b border-gray-200">
         <ServerLive />
         <h2 className="text-lg sm:text-xl font-bold">
-          Fulcrum Engineering Hub
+          MyHub
         </h2>
       </div>
       {!session ? (

@@ -35,7 +35,7 @@ Post.create!(
   hash_id: "d82fef39d6c3698248eb9ef86dce32720df8b6b89296285321b666e8306fb39c",
   source: "docusaurus",
   metadata: {
-    "summary" => "This blogpost by @kdiedrick, discusses the enhancements and improvements brought by using Vite as the bundler tool for the fulcrum-components project, enabling faster development through its automatic chunking, hot module reloading, and reduced bundle size. Vite also aligns the project with modern toolchains and leverages existing tools like esbuild and rollup, offering a simplified and efficient bundle process.",
+    "summary" => "This blogpost by @kdiedrick, discusses the enhancements and improvements brought by using Vite as the bundler tool for the MyHub-components project, enabling faster development through its automatic chunking, hot module reloading, and reduced bundle size. Vite also aligns the project with modern toolchains and leverages existing tools like esbuild and rollup, offering a simplified and efficient bundle process.",
     "tags" => ["bundling", "vite", "ui", "ux"],
     "slug" => "vite-bundler",
     "authors" => ["kdiedrick"],
@@ -50,11 +50,11 @@ Post.create!(
   hash_id: "fee4607e9310eb0ff49573626eeb1504871ec71e911004b866e1065623d79a07",
   source: "docusaurus",
   metadata: {
-    "summary" => "This blog post by @toddrun describes the upcoming changes to how Fulcrum outputs KML files, which aim to improve compatibility and renderability within Google Earth. The updates include using an updated library for Koop and a new approach for DataExports to overcome issues with invalid `<Icon>` urls and inconsistent output.",
+    "summary" => "This blog post by @toddrun describes the upcoming changes to how MyHub outputs KML files, which aim to improve compatibility and renderability within Google Earth. The updates include using an updated library for Koop and a new approach for DataExports to overcome issues with invalid `<Icon>` urls and inconsistent output.",
     "tags" => ["kml", "shared views", "data downloader"],
     "slug" => "updating-kml-output",
     "authors" => ["toddrun"],
-    "title" => "Upcoming changes to how Fulcrum outputs KML files",
+    "title" => "Upcoming changes to how MyHub outputs KML files",
     "creation_date" => "2024-05-15"
   }.to_json,
   filename: "2024-05-15-updating-kml-output.md"

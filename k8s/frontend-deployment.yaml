@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: rayces-frontend
+  name: nextjs-rayces
   namespace: raycesv3
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rayces-frontend
+      app: nextjs-rayces
   template:
     metadata:
       labels:
-        app: rayces-frontend
+        app: nextjs-rayces
     spec:
       containers:
       - name: nextjs
-        image: canriquez/rayces-ui:v0.12d
+        image: canriquez/rayces-ui:v0.13
         command: ["yarn", "dev"]
         env:
           - name: NODE_ENV

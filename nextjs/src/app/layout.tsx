@@ -8,7 +8,7 @@ import SessionWrapper from "./components/SessionWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Fulcrum Documentation News",
+  title: "MyHub Documentation News",
   description: "Share what is good..",
 };
 
