@@ -1,0 +1,56 @@
+// .devcontainer/devcontainer.json
+{
+    "name": "Rayces Development Environment (k3d Local)",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest",
+            "moby": true
+        },
+        "ghcr.io/rio/features/k3d:1": { // User-provided feature source
+            "version": "latest"
+        },
+        "ghcr.io/rio/features/skaffold:2": { // User-provided feature source
+             "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {
+            "kubectl": "latest",
+            "helm": "none",
+            "minikube": "none"
+        },
+        "ghcr.io/rio/features/k9s:1": {} // User-provided feature source
+    },
+
+    "mounts": [
+        "source=${localEnv:HOME}/.kube,target=/home/vscode/.kube_host,type=bind,consistency=cached"
+    ],
+
+    // Call the external script for postCreateCommand
+    // The path is relative to the workspace root (where .devcontainer folder is)
+    "postCreateCommand": ".devcontainer/scripts/post-create.sh",
+
+    // Call the external script for postStartCommand
+    "postStartCommand": ".devcontainer/scripts/post-start.sh",
+
+    "forwardPorts": [
+        8080, // This will forward port 8080 from the dev container (where k3d's port 80 is now mapped) to your host
+        8443, // This will forward port 8443 from the dev container (where k3d's port 443 is now mapped) to your host
+        3000
+        // 8080 is already used above, if your Rails app was also using 8080, you'll need to adjust one of them.
+        // Let's assume your Rails app actually runs on a different port inside its container or you'll map it differently.
+        // For example, if Rails runs on 3000 internally and your k8s service exposes 8080,
+        // then the k3d port mapping for the LB (e.g., 8080:80) and this forwardPorts entry would be relevant.
+        // If Rails itself runs on 8080, and you have a service exposing that, ensure no conflicts.
+    ],
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "ms-kubernetes-tools.vscode-kubernetes"
+            ]
+        }
+    },
+    "privileged": true
+}
