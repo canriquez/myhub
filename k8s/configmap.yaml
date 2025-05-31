@@ -1,0 +1,14 @@
+apiVersion: v1
+data:
+  POSTGRES_HOST: postgres-rayces
+  POSTGRES_PORT: "5432"
+  RACK_ENV: development
+  RAILS_ENV: development
+  RAILS_LOG_TO_STDOUT: "true"
+  RAILS_PORT: "4000"
+  RAILS_SERVE_STATIC_FILES: "true"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: raycesv3-config
+  namespace: raycesv3

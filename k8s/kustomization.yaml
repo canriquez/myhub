@@ -1,0 +1,23 @@
+# kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# All resources will be deployed into this namespace.
+# Kustomize will add the namespace to any resource that doesn't have one.
+namespace: raycesv3
+
+generators:
+  - ../../.devcontainer/scripts/sops-decrypt-secret.sh
+
+resources:
+  # List of all Kubernetes manifests to be applied.
+  - configmap.yaml
+  - secret.yaml
+  - namespace.yaml
+  - storage.yaml
+  - postgres-service.yaml
+  - postgres-deployment.yaml
+  - frontend-service.yaml
+  - frontend-deployment.yaml
+  - backend-deployment.yaml
+  - rails-seeding-job-run-only-once.yaml

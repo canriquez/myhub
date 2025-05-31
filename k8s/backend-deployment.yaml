@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: rails-api
-        image: canriquez/rayces-backend:v0.16
+        image: rayces-backend
         # If your app listens on port 4000, expose it here:
         ports:
         - containerPort: 4000

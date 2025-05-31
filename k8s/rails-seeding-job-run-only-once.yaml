@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: rails-api
-        image: canriquez/rayces-backend:v0.16
+        image: rayces-backend
         command: [ "bash", "-c" ]
         args:
           - |

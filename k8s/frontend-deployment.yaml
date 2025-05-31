@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nextjs
-        image: canriquez/rayces-ui:v0.13
+        image: rayces-frontend
         command: ["yarn", "dev"]
         env:
           - name: NODE_ENV
