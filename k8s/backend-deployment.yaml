@@ -20,11 +20,9 @@ spec:
         ports:
         - containerPort: 4000
 
-        # 1) Reference config values:
-        # Option A: Pull in ALL keys from your ConfigMap as env vars
         envFrom:
-        - configMapRef:
-            name: raycesv3-config
+          - secretRef:
+              name: raycesv3-environment
 
         # 2) Startup command (similar to your Docker Compose):
         command: [ "sh", "-c" ]

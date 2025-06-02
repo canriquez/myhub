@@ -6,13 +6,14 @@ kind: Kustomization
 # Kustomize will add the namespace to any resource that doesn't have one.
 namespace: raycesv3
 
-generators:
-  - ../../.devcontainer/scripts/sops-decrypt-secret.sh
+secretGenerator:
+  - name: raycesv3-environment # Name of the Kubernetes Secret object
+    type: Opaque
+    envs:
+      - .env # Reads this gitignored file
 
 resources:
   # List of all Kubernetes manifests to be applied.
-  - configmap.yaml
-  - secret.yaml
   - namespace.yaml
   - storage.yaml
   - postgres-service.yaml
@@ -20,4 +21,4 @@ resources:
   - frontend-service.yaml
   - frontend-deployment.yaml
   - backend-deployment.yaml
-  - rails-seeding-job-run-only-once.yaml
+  #- rails-seeding-job-run-only-once.yaml

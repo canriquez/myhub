@@ -19,18 +19,18 @@ spec:
         env:
         - name: POSTGRES_USER
           valueFrom:
-            configMapKeyRef:
-              name: raycesv3-config
+            secretKeyRef:
+              name: raycesv3-environment
               key: POSTGRES_USER
         - name: POSTGRES_PASSWORD
           valueFrom:
-            configMapKeyRef:
-              name: raycesv3-config
+            secretKeyRef:
+              name: raycesv3-environment
               key: POSTGRES_PASSWORD
         - name: POSTGRES_DB
           valueFrom:
-            configMapKeyRef:
-              name: raycesv3-config
+            secretKeyRef:
+              name: raycesv3-environment
               key: POSTGRES_DB_PRODUCTION
         volumeMounts:
         - name: postgres-storage

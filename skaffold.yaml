@@ -2,13 +2,11 @@
 apiVersion: skaffold/v4beta13
 kind: Config
 metadata:
-  name: myhub-k3d
+  name: myhub-local-rancher
 build:
   # Local build configuration
   local:
-    # Skaffold will build images using the Docker daemon available in the Dev Container (Docker-in-Docker).
-    # 'push: false' is implicit when Skaffold detects a local cluster like k3d,
-    # and it will try to load images directly.
+    useBuildkit: true
     push: false
     # Concurrency can be adjusted based on your dev container resources
     concurrency: 1
@@ -25,6 +23,7 @@ build:
       context: nextjs
       docker:
         dockerfile: Dockerfile
+        target: dev
       # platform: "linux/arm64" # Uncomment if on Apple Silicon M-series Mac
 manifests:
   # Use kustomize to manage Kubernetes manifests
