@@ -87,9 +87,9 @@ The application requires environment variables for configuration and secrets. Th
     ```
     Commit your `.gitignore` file if you've updated it.
 
-### `.env-example` Content Structure
+### `dot.env-example` Content Structure
 
-This file should be present in the repository (e.g., `k8s/.env-example`) for developers to copy from.
+This file should be present in the repository (e.g., `k8s/dot.env-example`) for developers to copy from.
 ```ini
 # PostgreSQL Configuration
 POSTGRES_USER=postgres
