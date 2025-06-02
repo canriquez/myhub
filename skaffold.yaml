@@ -18,13 +18,11 @@ build:
       docker:
         dockerfile: Dockerfile
       # Specify the platform if your dev container (and thus k3d nodes) are ARM64
-      # platform: "linux/arm64" # Uncomment if on Apple Silicon M-series Mac
     - image: rayces-frontend
       context: nextjs
       docker:
         dockerfile: Dockerfile
         target: dev
-      # platform: "linux/arm64" # Uncomment if on Apple Silicon M-series Mac
 manifests:
   # Use kustomize to manage Kubernetes manifests
   kustomize:

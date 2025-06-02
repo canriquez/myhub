@@ -10,4 +10,4 @@ spec:
     targetPort: 4000
   selector:
     app: rails-api
-  type: ClusterIP
+  type: LoadBalancer

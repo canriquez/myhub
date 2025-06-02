@@ -20,5 +20,6 @@ resources:
   - postgres-deployment.yaml
   - frontend-service.yaml
   - frontend-deployment.yaml
+  - backend-service.yaml
   - backend-deployment.yaml
   #- rails-seeding-job-run-only-once.yaml
