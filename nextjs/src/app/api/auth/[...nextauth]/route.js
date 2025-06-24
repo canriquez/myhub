@@ -12,7 +12,7 @@ const handler = NextAuth({
           prompt: "consent",
           access_type: "offline",
           response_type: "code",
-          hd: "spatialnetworks.com",
+          //hd: "spatialnetworks.com",
           scope: "openid email profile",
           idToken: true, //This is required to actually get the idToken from google: https://github.com/nextauthjs/next-auth/blob/v4/packages/next-auth/src/providers/google.ts
         },
